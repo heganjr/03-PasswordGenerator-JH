@@ -13,12 +13,11 @@
 //  - Checkbox criteria
 //  - Character length slider
 
-
 // Variables
 // Creating a low to high function to create the decimals for the characters in an ASCII table
 
 const lowerCaseCharacters = arrayFromLowToHigh(97, 122);
-const upperCaseCharacters = arrayFromLowToHigh(65,90);
+const upperCaseCharacters = arrayFromLowToHigh(65, 90);
 const numericCharacters = arrayFromLowToHigh(48, 57);
 const specialCharacters = arrayFromLowToHigh(33, 47)
   .concat(arrayFromLowToHigh(58, 64))
@@ -29,8 +28,17 @@ console.log(
   upperCaseCharacters,
   numericCharacters,
   specialCharacters
-  
 );
+// Concatinating the special character arrays as they are not consecutive decimal values in the ASCII table
+
+function arrayFromLowToHigh(low, high) {
+  const array = [];
+  for (let i = low; i <= high; i++) {
+    array.push(i);
+  }
+  return array;
+}
+// Change the value of the low decimal value until it reaches the high value within the array
 
 // Assignment Code
 let generateBtn = document.querySelector("#generate");
@@ -45,55 +53,50 @@ function writePassword() {
 
 function generatePassword() {
   let passwordCharacters = [];
-  let passwordLength = parseInt(number.value)
 
-  // Come back to this later when working on prompt for character length
-  // I DONT THINK I NEED THIS ^^^
-
-  if (window.prompt("Select number of characters from 8 - 128"))
-
-  
-  if (window.confirm("Would you like to select lower case characters? 🤔")){
-    passwordCharacters = passwordCharacters.concat(lowerCaseCharacters)
-    console.log(passwordCharacters)
+  let passwordCharacterLength = window.prompt(
+    "Select number of characters from 8 - 128"
+  );
+  if (passwordCharacterLength < 8) {
+    passwordCharacterLength = 8;
+    alert("Default min length set to 8 characters");
+  } else if (passwordCharacterLength > 128) {
+    passwordCharacterLength = 128;
+    alert("Default max length set to 128 characters");
   }
-  
-  if (window.confirm("Would you like to select upper case characters? 🤔")){
-    passwordCharacters = passwordCharacters.concat(upperCaseCharacters)
-    console.log(passwordCharacters)
-  }
+  // Setting a default length if the user sets a value less than 8 characters or more than 128 characters
 
-  if (window.confirm("Would you like to select numeric characters? 🤔")){
-    passwordCharacters = passwordCharacters.concat(numericCharacters)
-    console.log(passwordCharacters)
+  if (window.confirm("Would you like to select lower case characters? 🤔")) {
+    passwordCharacters = passwordCharacters.concat(lowerCaseCharacters);
+    console.log(passwordCharacters);
   }
 
-  if (window.confirm("Would you like to select special characters? 🤔")){
-    passwordCharacters = passwordCharacters.concat(specialCharacters)
-    console.log(passwordCharacters)
+  if (window.confirm("Would you like to select upper case characters? 🤔")) {
+    passwordCharacters = passwordCharacters.concat(upperCaseCharacters);
+    console.log(passwordCharacters);
   }
-  let passwordResult = ""
-  for (let i =0; i < passwordLength; i++){
-    let characterRandomiser = passwordCharacters[Math.random() * passwordCharacters./*passwordLength*/)];
-    characterRandomiser = String.fromCharCode(characterRandomiser)
-    passwordResult += characterRandomiser
-    console.log(passwordResult)
+
+  if (window.confirm("Would you like to select numeric characters? 🤔")) {
+    passwordCharacters = passwordCharacters.concat(numericCharacters);
+    console.log(passwordCharacters);
   }
-  return passwordResult
 
-  // SORT OUT PASSWORD LENGTH PROMPT
- 
+  if (window.confirm("Would you like to select special characters? 🤔")) {
+    passwordCharacters = passwordCharacters.concat(specialCharacters);
+    console.log(passwordCharacters);
+  }
+  // concatinating the character arrays together based on what the user selects for the password criteria
+  let passwordResult = [];
+  console.log(passwordCharacters);
+  for (let i = 0; i < passwordCharacterLength; i++) {
+    var index = Math.floor(Math.random() * passwordCharacters.length);
+    passwordResult[i] = passwordCharacters[index];
+    passwordResult[i] = String.fromCharCode(passwordResult[i]);
+  }
 
+  return passwordResult.join("");
 }
-
-
-function arrayFromLowToHigh(low, high) {
-  const array = [];
-  for (let i = low; i <= high; i++) {
-    array.push(i)
-  }
-  return array
-}
+// removed the "," that was showing between characters
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
