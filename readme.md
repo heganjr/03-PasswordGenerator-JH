@@ -50,7 +50,3 @@ _______
 ![Prompt-5](./images/prompt-5.PNG)
 
 ![image-password](./images/imagepassword.PNG)
-
-
-
-
