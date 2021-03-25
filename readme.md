@@ -29,7 +29,7 @@ The user will confirm with a confirm box, "Ok" or "Cancel", whether the password
 
 Please note that ASCII decimal values have been used to generate the character arrays for the password generator ([ASCII Table](http://www.asciitable.com/)). From this a function has been created allowing the script to generate a low to high arrary then convert that array to characters with use of the String.fromCharCode method.
 
-Due to the nature of probability selecting a smaller character length can lead to the one or more password criteria not showing in the in the Password Result
+Due to the nature of probability there is a small chance that not all criteria that the user selects will be shown in the generated password, especially if the user requests a password of the minimum of 8 characters. Please take this into account when assessing this application.
 
 _______
 
@@ -49,4 +49,6 @@ _______
 
 ![Prompt-5](./images/prompt-5.PNG)
 
-![image-password](./images/imagepassword.PNG)
+![Password](./images/password.PNG)
+
+______
